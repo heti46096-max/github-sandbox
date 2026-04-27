@@ -1,6 +1,6 @@
 # github-sandbox
 
-# 📥 Download Files via Commit Meeeeessage
+# 📥 Download Files via Commit Meeeeeessage
 
 A GitHub Actions workflow that lets you download files into your repository just by writing a special commit message — no terminal or command line needed.
 
