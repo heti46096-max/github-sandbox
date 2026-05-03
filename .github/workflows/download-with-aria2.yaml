@@ -5,6 +5,7 @@ on:
       - "**"
 jobs:
   save-file:
+    if: contains(github.event.head_commit.message, 'download:') || contains(github.event.head_commit.message, 'download-zip:')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -63,7 +64,7 @@ jobs:
             if [ "$SIZE" -gt "$LIMIT" ]; then
               echo "✂️ $BASENAME is $(( SIZE / 1024 / 1024 ))MB — splitting with zip..."
               # zip -s creates: file.zip, file.z01, file.z02, ...
-              zip -s 90m "downloads/${BASENAME}.zip" -j "$FILE"
+              zip -0 -s 90m "downloads/${BASENAME}.zip" -j "$FILE"
               echo "✅ Parts: $(ls downloads/${BASENAME}* | wc -l)"
             else
               cp "$FILE" "downloads/$BASENAME"
